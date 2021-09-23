@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Bubbling</title>
+    <style>
+      #grandparent {
+        border: 1px solid black;
+        margin: 20px;
+        padding: 20px;
+      }
+      #parent {
+        border: 1px solid blue;
+        margin: 20px;
+        padding: 20px;
+      }
+      #child {
+        border: 1px solid red;
+        margin: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div id="grandparent">
+        <h1>Grandparent</h1>
+        <div id="parent">
+          <h2>Parent</h2>
+          <div id="child">
+            <h3>Child</h3>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="button1" id="btn1">Button 1</button>
+        <button class="button2" id="btn2">Google</button>
+        <button class="button3" id="btn3">Yahoo</button>
+        <button class="button4" id="btn4">Button 4</button>
+        <button class="button5" id="btn5" data-mycustombutton="1">
+          Button 5
+        </button>
+      </div>
+    </div>
+    <script>
+      const grandparent = document.querySelector('#grandparent');
+      const parent = document.querySelector('#parent');
+      const child = document.querySelector('#child');
+
+      grandparent.addEventListener('click', function (e) {
+        console.log('grandparent was clicked');
+      });
+      parent.addEventListener('click', function (e) {
+        console.log('parent was clicked');
+      });
+      child.addEventListener('click', function (e) {
+        console.log('child was clicked');
+      });
+
+      const buttons = document.querySelector('.buttons');
+      buttons.addEventListener('click', function (e) {
+        console.log('e is ', e);
+        if (e.target.id === 'btn1') {
+          // do something
+          alert('hello world');
+        }
+        if (e.target.id === 'btn2') {
+          alert('google');
+          //  window.location.href = 'https://google.com';
+        }
+        if (e.target.className === 'button3') {
+          alert('hurry');
+
+          //window.location.href = 'https://yahoo.com';
+        }
+        if (e.target.classList.contains('button4')) {
+          alert('hurry');
+        }
+        if (e.target.dataset.mycustombutton === '1') {
+          alert('my custom box');
+        }
+      });
+    </script>
+  </body>
+</html>
